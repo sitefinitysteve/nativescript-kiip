@@ -1,7 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
     <ScrollView>
-        <StackLayout row="0" class="lklogo" orientation="horizontal">
-            <Image src="res://logo-kiip" stretch ="fill" class="logo" />     
-        </StackLayout>
+        <GridLayout rows="auto, auto">
+           <StackLayout row="0" class="logo-wrapper" orientation="horizontal">
+                <Image src="res://logo-kiip" stretch ="fill" class="logo" />     
+            </StackLayout>
+        </GridLayout>
     </ScrollView>
 </Page>
