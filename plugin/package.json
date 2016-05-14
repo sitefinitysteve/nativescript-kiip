@@ -1,0 +1,32 @@
+{
+  "name": "nativescript-kiip",
+  "version": "v0.0.1",
+  "description": "Integrate native kiip widgets into NativeScript",
+  "main": "index.js",
+  "nativescript": {
+    "platforms": {
+      "ios": "1.7.0"
+    }
+  },
+"repository": {
+    "type": "git",
+    "url": "https://github.com/sitefinitysteve/nativescript-kiip.git"
+  },
+  "keywords": [
+    "NativeScript",
+    "kiip",
+    "kiip.me",
+    "sitefinitysteve",
+    "iOS",
+    "Android"
+  ],
+  "author": {
+    "name": "Steve McNiven-Scott",
+    "email": "steve@sitefinitysteve.com",
+    "url": "https://github.com/sitefinitysteve"
+  },
+  "readmeFilename": "README.md",
+  "license": "Apache-2.0",
+  "bugs": "https://github.com/sitefinitysteve/nativescript-kiip/issues",
+  "homepage": "https://github.com/sitefinitysteve/nativescript-kiip"
+}

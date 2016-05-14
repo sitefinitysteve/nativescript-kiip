@@ -1,0 +1,12 @@
+{
+	"nativescript": {
+		"id": "org.nativescript.kiipdemo",
+		"tns-ios": {
+			"version": "1.7"
+		}
+	},
+	"dependencies": {
+		"nativescript-kiip": "file:../plugin",
+		"tns-core-modules": "1.7.1"
+	}
+}
