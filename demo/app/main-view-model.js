@@ -1,10 +1,8 @@
-var Observable = require("data/observable").Observable;
+var viewModel;
+var observable = require('data/observable').Observable;
 
-function createViewModel() {
-    var viewModel = new Observable();
-    viewModel.title = "Kiip";
-    viewModel.status = "";
-    return viewModel;
-}
+viewModel = new observable({
+    debug: ""
+});
 
-exports.createViewModel = createViewModel;
+module.exports = viewModel;

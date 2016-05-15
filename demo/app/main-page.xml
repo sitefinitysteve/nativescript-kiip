@@ -1,9 +1,9 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" actionbarhidden="true">
     <ScrollView>
-        <GridLayout rows="auto, auto">
-           <StackLayout row="0" class="logo-wrapper" orientation="horizontal">
-                <Image src="res://logo-kiip" stretch ="fill" class="logo" />     
-            </StackLayout>
-        </GridLayout>
+        <StackLayout>
+            <Image src="res://kiip.png" class="logo" stretch="none" />
+            <Button text="Click" tap="onTest" />
+            <Label text="{{ debug }}" textWrap="true" />
+        </StackLayout>
     </ScrollView>
 </Page>

@@ -11,9 +11,39 @@ exports.initalize = function (options) {
 }
 
 exports.instance = function () {
-    me.kiip.sdk.Kiip.getInstance();
+    return me.kiip.sdk.Kiip.getInstance();
 }
 
-exports.saveMoment = function(momentId){
-    debugger;
+exports.setEmail = function (email) {
+    return me.kiip.sdk.Kiip.getInstance().setEmail(email);
+}
+
+exports.setGender = function (gender) {
+    return me.kiip.sdk.Kiip.getInstance().setGender(gender);
+}
+
+exports.setBirthday = function (birthday) {
+    return me.kiip.sdk.Kiip.getInstance().setBirthday(birthday);
+}
+
+exports.saveMoment = function (moment) {
+    
+}
+
+exports.startSession = function () {
+    return new Promise(function(resolve, reject) {
+        me.kiip.sdk.Kiip.getInstance().startSession(function() {
+            debugger;
+            resolve("complete");
+        });
+    });
+}
+
+exports.endSession = function () {
+    return new Promise(function(resolve, reject) {
+        me.kiip.sdk.Kiip.getInstance().endSession(function() {
+            debugger;
+            resolve("complete");
+        });
+    });
 }
