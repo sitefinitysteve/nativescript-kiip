@@ -29,10 +29,12 @@ if (application.ios) {
     })(UIResponder);
     application.ios.delegate = appDelegate;
 }else{
-    kiip.initalize({
-        key: "d16762e04b6f3320a8c828daeb178d2e",
-        secret: "baa8b79a95a55908ae71d9254669dd0e"
-    }); 
+    application.on(application.launchEvent, function (args) {
+        kiip.initalize({
+            key: "20bdb67fe5ca89145ce8f0736b139738",
+            secret: "4fee217a57cfefc4cc0257682073ef06"
+        }); 
+    });
 }
 
 application.start({ moduleName: "main-page" });

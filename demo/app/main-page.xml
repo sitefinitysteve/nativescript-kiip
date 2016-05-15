@@ -1,4 +1,4 @@
-<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" actionbarhidden="true">
     <ScrollView>
         <GridLayout rows="auto, auto">
            <StackLayout row="0" class="logo-wrapper" orientation="horizontal">
