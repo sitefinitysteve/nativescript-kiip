@@ -1,4 +1,5 @@
 var application = require("application");
+var kiip = require("nativescript-kiip");
 
 var frameModule = require("ui/frame");
 
@@ -17,14 +18,21 @@ if (application.ios) {
         }
         
         appDelegate.prototype.applicationDidFinishLaunchingWithOptions = function (app, launchOptions) {
-
-            
+            kiip.initalize({
+                key: "d16762e04b6f3320a8c828daeb178d2e",
+                secret: "baa8b79a95a55908ae71d9254669dd0e"
+            }); 
         };
         
         appDelegate.ObjCProtocols = [UIApplicationDelegate];
         return appDelegate;
     })(UIResponder);
     application.ios.delegate = appDelegate;
+}else{
+    kiip.initalize({
+        key: "d16762e04b6f3320a8c828daeb178d2e",
+        secret: "baa8b79a95a55908ae71d9254669dd0e"
+    }); 
 }
 
 application.start({ moduleName: "main-page" });
