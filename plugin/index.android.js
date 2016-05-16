@@ -32,18 +32,35 @@ exports.saveMoment = function (moment) {
 
 exports.startSession = function () {
     return new Promise(function(resolve, reject) {
-        me.kiip.sdk.Kiip.getInstance().startSession(function() {
-            debugger;
-            resolve("complete");
-        });
+        var callback = getCallback();
+        
+        me.kiip.sdk.Kiip.getInstance().startSession(callback);
     });
 }
 
 exports.endSession = function () {
     return new Promise(function(resolve, reject) {
-        me.kiip.sdk.Kiip.getInstance().endSession(function() {
-            debugger;
-            resolve("complete");
-        });
+        var callback = getCallback();
+        
+        me.kiip.sdk.Kiip.getInstance().endSession(callback);
     });
+}
+
+function getCallback(){
+    var callback = me.kiip.sdk.Kiip.Callback.extend({
+            onFinished: function(kiip, poptart){
+                resolve({
+                    kiip: kiip,
+                    poptart: poptart
+                });
+            },
+            onFailed: function(kiip, exception){
+                reject({
+                    kiip: kiip,
+                    exception: exception
+                });
+            }
+        });
+        
+   return new callback();     
 }

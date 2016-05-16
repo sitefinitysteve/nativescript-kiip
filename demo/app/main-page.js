@@ -10,6 +10,14 @@ exports.onNavigatingTo = function (args) {
 }
 
 exports.onTest = function (args) {
-    var instance = kiip.instance();
-    debugger;
+    startSession().then(function (args) {
+        alert("success");
+    }, function (args) {
+        debugger;
+        alert("tanked");
+    });
+}
+
+function startSession() {
+
 }
