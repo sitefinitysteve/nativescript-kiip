@@ -36,7 +36,14 @@ exports.getDeviceIdentifier = function () {
 }
 
 exports.getCapabilities = function () {
-    return me.kiip.sdk.Kiip.getInstance().getCapabilities();
+    var capabilities = me.kiip.sdk.Kiip.getInstance().getCapabilities();
+    var items = [];
+
+    for (var i = 0; i < capabilities.length; i++) {
+        items.push(capabilities[i]);
+    }
+
+    return items;
 }
 /*
 exports.setBirthday = function (birthday) {
@@ -48,20 +55,20 @@ exports.setBirthday = function (birthday) {
 */
 exports.saveMoment = function (options) {
     return new Promise(function (resolve, reject) {
-        if(options.id){
+        if (options.id) {
             var localCallback = new momentCallback();
             localCallback.init(resolve, reject)
-            
-            if(options.id && options.value){
+
+            if (options.id && options.value) {
                 me.kiip.sdk.Kiip.getInstance().saveMoment(options.id, options.value, localCallback);
             }
-            else if(options.id && options.meta){
+            else if (options.id && options.meta) {
                 me.kiip.sdk.Kiip.getInstance().saveMoment(options.id, options.meta, localCallback);
             }
-            else{
+            else {
                 me.kiip.sdk.Kiip.getInstance().saveMoment(options.id, localCallback);
             }
-        }else{
+        } else {
             console.log("No moment id sent... example: kiip.saveMoment({id: 'someid'})");
         }
     });
@@ -85,12 +92,12 @@ exports.endSession = function () {
     });
 }
 
-function setCallback(){
+function setCallback() {
     startEndCallback = me.kiip.sdk.Kiip.Callback.extend({
         _promise: null,
 
-        init: function(resolve, reject){
-           this._promise  = { resolve: resolve, reject: reject };
+        init: function (resolve, reject) {
+            this._promise = { resolve: resolve, reject: reject };
         },
         onFinished: function (kiip, poptart) {
             this._promise.resolve({
@@ -105,20 +112,20 @@ function setCallback(){
             });
         }
     });
-    
+
     momentCallback = me.kiip.sdk.Kiip.Callback.extend({
         _promise: null,
         _message: "",
-        
-        init: function(resolve, reject, message){
-           this._promise  = { resolve: resolve, reject: reject };
+
+        init: function (resolve, reject, message) {
+            this._promise = { resolve: resolve, reject: reject };
         },
         onFinished: function (kiip, poptart) {
             if (poptart == null) {
                 this._message = "Successful moment but no reward to give.";
                 console.log("Successful moment but no reward to give.");
             }
-            
+
             this._promise.resolve({
                 kiip: kiip,
                 poptart: poptart,

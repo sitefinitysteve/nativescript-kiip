@@ -8,16 +8,18 @@ var page;
 exports.onNavigatingTo = function (args) {
     page = args.object;
     page.bindingContext = viewModel;
-    
+
     viewModel.id = "Kiip DeviceId: " + kiip.getDeviceIdentifier();
-    
+
     var capabilityResult = "";
     debugger;
+    
     var capabilities = kiip.getCapabilities();
-    for(var i=0; i<capabilities.length; i++) {
+    
+    for (var i = 0; i < capabilities.length; i++) {
         capabilityResult = capabilityResult + capabilities[i] + ", ";
     }
-    
+
     viewModel.capabilities = "Capabilities: " + capabilityResult;
 }
 
@@ -41,14 +43,14 @@ exports.onSaveMoment = function (args) {
     kiip.saveMoment({
         id: "open_app"
     }).then(function (args) {
-        
-        if(args.poptart != null){
-            if(app.android){
-                var context = app.android.currentContext;  
+
+        if (args.poptart != null) {
+            if (app.android) {
+                var context = app.android.currentContext;
                 args.poptart.show(context); //<-- CRASH HERE
-            }  
+            }
         }
-            
+
         viewModel.debug = "Saved Moment " + new Date()
     }, function (args) {
         viewModel.debug = "Save Moment Failed";

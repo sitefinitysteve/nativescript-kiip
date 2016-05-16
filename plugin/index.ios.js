@@ -7,7 +7,7 @@ var kiip;
 
 exports.initalize = function (options) {
     kiip = Kiip.alloc().initWithAppKeyAndSecret(options.key, options.secret);
-    
+
     if (options.testMode) {
         kiip.testMode = true;
     }
@@ -30,7 +30,14 @@ exports.getDeviceIdentifier = function () {
 }
 
 exports.getCapabilities = function () {
-    return kiip.capabilities;
+    var capabilities = kiip.capabilities;
+    var items = [];
+
+    for (var i = 0; i < capabilities.count; i++) {
+        items.push(capabilities[i]);
+    }
+
+    return items;
 }
 /*
 exports.setBirthday = function (birthday) {
@@ -41,13 +48,13 @@ exports.setBirthday = function (birthday) {
 }
 */
 exports.saveMoment = function (options) {
-        //TODO
+    //TODO
 }
 
 exports.startSession = function () {
-        //TODO
+    //TODO
 }
 
 exports.endSession = function () {
-        //TODO
+    //TODO
 }
