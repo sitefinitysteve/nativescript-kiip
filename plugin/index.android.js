@@ -35,9 +35,14 @@ exports.saveMoment = function (momentId) {
     return new Promise(function(resolve, reject) {
     var callback = me.kiip.sdk.Kiip.Callback.extend({
             onFinished: function(kiip, poptart){
+                if (poptart == null) {
+                    console.log("Successful moment but no reward to give.");
+                }
+                
                 resolve({
                     kiip: kiip,
-                    poptart: poptart
+                    poptart: poptart,
+                    message: (poptart == null) ? "Successful moment but no reward to give." : "Success"
                 });
             },
             onFailed: function(kiip, exception){
@@ -56,9 +61,14 @@ exports.startSession = function () {
     return new Promise(function(resolve, reject) {
     var callback = me.kiip.sdk.Kiip.Callback.extend({
             onFinished: function(kiip, poptart){
+                if (poptart == null) {
+                    console.log("Successful moment but no reward to give.");
+                }
+                
                 resolve({
                     kiip: kiip,
-                    poptart: poptart
+                    poptart: poptart,
+                    message: (poptart == null) ? "Successful moment but no reward to give." : "Success"
                 });
             },
             onFailed: function(kiip, exception){
@@ -77,9 +87,14 @@ exports.endSession = function () {
     return new Promise(function(resolve, reject) {
     var callback = me.kiip.sdk.Kiip.Callback.extend({
             onFinished: function(kiip, poptart){
+                if (poptart == null) {
+                    console.log("Successful moment but no reward to give.");
+                }
+                
                 resolve({
                     kiip: kiip,
-                    poptart: poptart
+                    poptart: poptart,
+                    message: (poptart == null) ? "Successful moment but no reward to give." : "Success"
                 });
             },
             onFailed: function(kiip, exception){
