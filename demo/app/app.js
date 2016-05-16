@@ -23,7 +23,7 @@ if (application.ios) {
             }); 
         };
         
-        appDelegate.ObjCProtocols = [UIApplicationDelegate];
+        appDelegate.ObjCProtocols = [UIApplicationDelegate, KiipDelegate];
         return appDelegate;
     })(UIResponder);
     application.ios.delegate = appDelegate;

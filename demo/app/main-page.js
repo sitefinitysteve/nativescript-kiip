@@ -10,17 +10,7 @@ exports.onNavigatingTo = function (args) {
     page.bindingContext = viewModel;
 
     viewModel.id = "Kiip DeviceId: " + kiip.getDeviceIdentifier();
-
-    var capabilityResult = "";
-    debugger;
-    
-    var capabilities = kiip.getCapabilities();
-    
-    for (var i = 0; i < capabilities.length; i++) {
-        capabilityResult = capabilityResult + capabilities[i] + ", ";
-    }
-
-    viewModel.capabilities = "Capabilities: " + capabilityResult;
+    viewModel.capabilities = kiip.getCapabilities();
 }
 
 exports.onStartSession = function (args) {
@@ -48,6 +38,9 @@ exports.onSaveMoment = function (args) {
             if (app.android) {
                 var context = app.android.currentContext;
                 args.poptart.show(context); //<-- CRASH HERE
+            }else if(app.ios){
+                debugger;
+                args.poptart.show();
             }
         }
 

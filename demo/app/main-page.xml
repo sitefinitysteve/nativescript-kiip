@@ -9,8 +9,10 @@
     <ScrollView>
         <StackLayout>
             <Image src="https://upload.wikimedia.org/wikipedia/en/2/29/Kiip_logo_image.png" class="logo" stretch="AspectFill" />
-            <Button text="Start Session" tap="onStartSession" />
-            <Button text="End Session" tap="onEndSession" />
+            <android>
+                <Button text="Start Session" tap="onStartSession" />
+                <Button text="End Session" tap="onEndSession" />
+            </android>
             <Button text="Save Moment" tap="onSaveMoment" />
             <Label text="{{ debug }}" textWrap="true" />
             <StackLayout orientation="horizontal">
@@ -27,7 +29,14 @@
             </StackLayout>
             <StackLayout class="meta">
                 <Label text="{{ id }}" textWrap="true" />
-                <Label text="{{ capabilities }}" textWrap="true" />
+                <Repeater items="{{ capabilities }}">
+                    <Repeater.itemsLayout>
+                        <StackLayout />
+                    </Repeater.itemsLayout>
+                    <Repeater.itemTemplate>
+                        <Label text="{{ $value }}" textWrap="false" />
+                    </Repeater.itemTemplate>
+                </Repeater>>
             </StackLayout>
         </StackLayout>
     </ScrollView>

@@ -7,7 +7,7 @@ viewModel = new observable({
     birthday: "06/21/91",
     gender: "",
     id: "",
-    capabilities: ""
+    capabilities: []
 });
 
 module.exports = viewModel;

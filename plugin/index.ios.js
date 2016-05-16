@@ -3,34 +3,34 @@ var settings = {
     testMode: false
 };
 
-var kiip;
+var _kiip;
 
 exports.initalize = function (options) {
-    kiip = Kiip.alloc().initWithAppKeyAndSecret(options.key, options.secret);
+    _kiip = Kiip.alloc().initWithAppKeyAndSecret(options.key, options.secret);
 
     if (options.testMode) {
-        kiip.testMode = true;
+        _kiip.testMode = true;
     }
 }
 
 exports.instance = function () {
-    return kiip;
+    return _kiip;
 }
 
 exports.setEmail = function (email) {
-    kiip.email = email;
+    _kiip.email = email;
 }
 
 exports.setGender = function (gender) {
-    kiip.gender = gender;
+    _kiip.gender = gender;
 }
 
 exports.getDeviceIdentifier = function () {
-    return kiip.deviceIdentifier;
+    return _kiip.deviceIdentifier;
 }
 
 exports.getCapabilities = function () {
-    var capabilities = kiip.capabilities;
+    var capabilities = _kiip.capabilities;
     var items = [];
 
     for (var i = 0; i < capabilities.count; i++) {
@@ -39,22 +39,52 @@ exports.getCapabilities = function () {
 
     return items;
 }
-/*
-exports.setBirthday = function (birthday) {
-    debugger;
-    var format = new java.lang.SimpleDateFormat("dd/mm/yy", Locale.ENGLISH);
-    var date = format.parse(birthday);
-    me.kiip.sdk.Kiip.getInstance().setBirthday(date);
-}
-*/
+
 exports.saveMoment = function (options) {
-    //TODO
+    return new Promise(function (resolve, reject) {
+        if (options.id) {
+            if (options.id && options.value) {
+                
+            }
+            else if (options.id && options.meta) {
+                
+            }
+            else {
+                _kiip.saveMomentWithCompletionHandler(options.id, function (poptart, error) {
+                    if(error){
+                        reject({
+                            kiip: _kiip,
+                            exception: error
+                        });
+                    }else{
+                        resolve({
+                            kiip: _kiip,
+                            poptart: poptart
+                        });
+                    }    
+                });
+            }
+        } else {
+            console.log("No moment id sent... example: kiip.saveMoment({id: 'someid'})");
+        }
+    });
 }
 
+//DUMMY STUBS TO NOT BREAK Cross Platformability
 exports.startSession = function () {
-    //TODO
+    return new Promise(function (resolve, reject) {
+        resolve({
+            kiip: _kiip,
+            poptart: null
+        });
+    });
 }
 
 exports.endSession = function () {
-    //TODO
+    return new Promise(function (resolve, reject) {
+        resolve({
+            kiip: _kiip,
+            poptart: null
+        });
+    });
 }
