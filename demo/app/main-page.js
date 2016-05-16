@@ -1,3 +1,4 @@
+var app = require("application");
 var viewModel = require("./main-view-model");
 var frameModule = require("ui/frame");
 var kiip = require("nativescript-kiip");
@@ -27,6 +28,12 @@ exports.onEndSession = function (args) {
 
 exports.onSaveMoment = function (args) {
     kiip.saveMoment("open_app").then(function (args) {
+        
+        if(args.poptart != null){
+            var context = app.android.context;  
+            args.poptart.show(context, true);  
+        }
+            
         viewModel.debug = "Saved Moment " + new Date()
     }, function (args) {
         viewModel.debug = "Save Moment Failed";
