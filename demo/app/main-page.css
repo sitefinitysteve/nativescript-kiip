@@ -1,5 +1,17 @@
 .logo{
-    width: 150;
-    height: 150;
     horizontal-align: center;
+    vertical-align: center;
+    margin: 20 0;
+}
+
+.option-text{
+    width: 70%;
+}
+
+.option-button{
+    width: 30%;
+}
+
+.meta{
+    margin-top: 10;
 }

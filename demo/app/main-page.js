@@ -8,6 +8,16 @@ var page;
 exports.onNavigatingTo = function (args) {
     page = args.object;
     page.bindingContext = viewModel;
+    
+    viewModel.id = "Kiip DeviceId: " + kiip.getDeviceIdentifier();
+    
+    var capabilityResult = "";
+    var capabilities = kiip.getCapabilities();
+    for(var i=0; i<capabilities.length; i++) {
+        capabilityResult = capabilityResult + capabilities[i] + ", ";
+    }
+    
+    viewModel.capabilities = "Capabilities: " + capabilityResult;
 }
 
 exports.onStartSession = function (args) {
@@ -27,15 +37,30 @@ exports.onEndSession = function (args) {
 }
 
 exports.onSaveMoment = function (args) {
-    kiip.saveMoment("open_app").then(function (args) {
+    kiip.saveMoment({
+        id: "open_app"
+    }).then(function (args) {
         
         if(args.poptart != null){
+            debugger;
             var context = app.android.context;  
-            args.poptart.show(context, true);  
+            args.poptart.show(context); //<-- CRASH HERE  
         }
             
         viewModel.debug = "Saved Moment " + new Date()
     }, function (args) {
         viewModel.debug = "Save Moment Failed";
     });
+}
+
+exports.onSetEmail = function (args) {
+    kiip.setEmail(viewModel.email);
+}
+
+exports.onSetBirthday = function (args) {
+    kiip.setBirthday(viewModel.birthday);
+}
+
+exports.onSetGender = function (args) {
+    kiip.setGender(viewModel.gender);
 }

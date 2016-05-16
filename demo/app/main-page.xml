@@ -1,11 +1,34 @@
 <Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo" actionbarhidden="true">
+    <Page.actionBar>
+        <ActionBar title="Kiip Demo App" icon="">
+            <NavigationButton text="Back" icon="" tap="" />
+            <ActionBar.actionItems>
+            </ActionBar.actionItems>
+        </ActionBar>
+    </Page.actionBar>
     <ScrollView>
         <StackLayout>
-            <Image src="res://kiip.png" class="logo" stretch="none" />
+            <Image src="https://upload.wikimedia.org/wikipedia/en/2/29/Kiip_logo_image.png" class="logo" stretch="AspectFill" />
             <Button text="Start Session" tap="onStartSession" />
             <Button text="End Session" tap="onEndSession" />
             <Button text="Save Moment" tap="onSaveMoment" />
             <Label text="{{ debug }}" textWrap="true" />
+            <StackLayout orientation="horizontal">
+                <TextField hint="Email" text="{{ email }}" class="option-text" />
+                <Button text="Set" tap="onSetEmail" class="option-button"  />
+            </StackLayout>
+            <!--<StackLayout orientation="horizontal">
+                <TextField hint="Birthday" text="{{ birthday }}" class="option-text" />
+                <Button text="Set" tap="onSetBirthday" class="option-button"  />
+            </StackLayout>-->
+            <StackLayout orientation="horizontal">
+                <TextField hint="Gender" text="{{ gender }}" class="option-text" />
+                <Button text="Set" tap="onSetGender" class="option-button"  />
+            </StackLayout>
+            <StackLayout class="meta">
+                <Label text="{{ id }}" textWrap="true" />
+                <Label text="{{ capabilities }}" textWrap="true" />
+            </StackLayout>
         </StackLayout>
     </ScrollView>
 </Page>
