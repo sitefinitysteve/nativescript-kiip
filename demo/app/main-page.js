@@ -12,6 +12,7 @@ exports.onNavigatingTo = function (args) {
     viewModel.id = "Kiip DeviceId: " + kiip.getDeviceIdentifier();
     
     var capabilityResult = "";
+    debugger;
     var capabilities = kiip.getCapabilities();
     for(var i=0; i<capabilities.length; i++) {
         capabilityResult = capabilityResult + capabilities[i] + ", ";
@@ -42,9 +43,10 @@ exports.onSaveMoment = function (args) {
     }).then(function (args) {
         
         if(args.poptart != null){
-            debugger;
-            var context = app.android.context;  
-            args.poptart.show(context); //<-- CRASH HERE  
+            if(app.android){
+                var context = app.android.currentContext;  
+                args.poptart.show(context); //<-- CRASH HERE
+            }  
         }
             
         viewModel.debug = "Saved Moment " + new Date()

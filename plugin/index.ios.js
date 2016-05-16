@@ -3,29 +3,34 @@ var settings = {
     testMode: false
 };
 
+var kiip;
+
 exports.initalize = function (options) {
-    debugger;
-    var kiip = Kiip.alloc();
+    kiip = Kiip.alloc().initWithAppKeyAndSecret(options.key, options.secret);
+    
+    if (options.testMode) {
+        kiip.testMode = true;
+    }
 }
 
 exports.instance = function () {
-    //TODO
+    return kiip;
 }
 
 exports.setEmail = function (email) {
-    //TODO
+    kiip.email = email;
 }
 
 exports.setGender = function (gender) {
-    //TODO
+    kiip.gender = gender;
 }
 
 exports.getDeviceIdentifier = function () {
-    //TODO
+    return kiip.deviceIdentifier;
 }
 
 exports.getCapabilities = function () {
-    //TODO
+    return kiip.capabilities;
 }
 /*
 exports.setBirthday = function (birthday) {
