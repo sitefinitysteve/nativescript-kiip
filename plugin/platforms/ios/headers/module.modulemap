@@ -1,0 +1,4 @@
+module KiipSDK {
+  umbrella "../../../../../platforms/ios/Pods/Headers/Public"
+  export *
+}
