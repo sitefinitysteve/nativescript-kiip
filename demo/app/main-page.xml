@@ -2,7 +2,9 @@
     <ScrollView>
         <StackLayout>
             <Image src="res://kiip.png" class="logo" stretch="none" />
-            <Button text="Click" tap="onTest" />
+            <Button text="Start Session" tap="onStartSession" />
+            <Button text="End Session" tap="onEndSession" />
+            <Button text="Save Moment" tap="onSaveMoment" />
             <Label text="{{ debug }}" textWrap="true" />
         </StackLayout>
     </ScrollView>

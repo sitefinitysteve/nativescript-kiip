@@ -20,7 +20,8 @@ if (application.ios) {
         appDelegate.prototype.applicationDidFinishLaunchingWithOptions = function (app, launchOptions) {
             kiip.initalize({
                 key: "d16762e04b6f3320a8c828daeb178d2e",
-                secret: "baa8b79a95a55908ae71d9254669dd0e"
+                secret: "baa8b79a95a55908ae71d9254669dd0e",
+                testMode: true
             }); 
         };
         
@@ -32,7 +33,8 @@ if (application.ios) {
     application.on(application.launchEvent, function (args) {
         kiip.initalize({
             key: "20bdb67fe5ca89145ce8f0736b139738",
-            secret: "4fee217a57cfefc4cc0257682073ef06"
+            secret: "4fee217a57cfefc4cc0257682073ef06",
+            testMode: true
         }); 
     });
 }

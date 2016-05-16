@@ -9,15 +9,26 @@ exports.onNavigatingTo = function (args) {
     page.bindingContext = viewModel;
 }
 
-exports.onTest = function (args) {
-    startSession().then(function (args) {
-        alert("success");
+exports.onStartSession = function (args) {
+    kiip.startSession().then(function (args) {
+        viewModel.debug = "Session Started " + new Date()
     }, function (args) {
-        debugger;
-        alert("tanked");
+        viewModel.debug = "Session Start Failed"
     });
 }
 
-function startSession() {
+exports.onEndSession = function (args) {
+    kiip.endSession().then(function (args) {
+        viewModel.debug = "Session Ended " + new Date()
+    }, function (args) {
+        viewModel.debug = "Session End Failed"
+    });
+}
 
+exports.onSaveMoment = function (args) {
+    kiip.saveMoment("open_app").then(function (args) {
+        viewModel.debug = "Saved Moment " + new Date()
+    }, function (args) {
+        viewModel.debug = "Save Moment Failed";
+    });
 }
