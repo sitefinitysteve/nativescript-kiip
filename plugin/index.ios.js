@@ -40,6 +40,28 @@ exports.getCapabilities = function () {
     return items;
 }
 
+function getCallback(){
+    return {
+        _promise: null,
+        init: function (resolve, reject, message) {
+            this._promise = { resolve: resolve, reject: reject };
+        },
+        callback: function (poptart, error) {
+                if(error){
+                    this._promise.reject({
+                        kiip: _kiip,
+                        exception: error
+                    });
+                }else{
+                    this._promise.resolve({
+                        kiip: _kiip,
+                        poptart: poptart
+                    });
+                }
+        }
+    }
+}
+
 exports.saveMoment = function (options) {
     return new Promise(function (resolve, reject) {
         if (options.id) {
@@ -50,19 +72,10 @@ exports.saveMoment = function (options) {
                 
             }
             else {
-                _kiip.saveMomentWithCompletionHandler(options.id, function (poptart, error) {
-                    if(error){
-                        reject({
-                            kiip: _kiip,
-                            exception: error
-                        });
-                    }else{
-                        resolve({
-                            kiip: _kiip,
-                            poptart: poptart
-                        });
-                    }    
-                });
+                var localCallback = new getCallback();
+                localCallback.init(resolve, reject)
+        
+                _kiip.saveMomentWithCompletionHandler(options.id, localCallback.callback());
             }
         } else {
             console.log("No moment id sent... example: kiip.saveMoment({id: 'someid'})");
