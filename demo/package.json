@@ -1,15 +1,15 @@
 {
-	"nativescript": {
-		"id": "org.nativescript.kiipdemo",
-		"tns-android": {
-			"version": "1.7.1"
-		},
-		"tns-ios": {
-			"version": "2.0.0"
-		}
-	},
-	"dependencies": {
-		"nativescript-kiip": "file:../plugin",
-		"tns-core-modules": "1.7.1"
-	}
+  "nativescript": {
+    "id": "org.nativescript.kiipdemo",
+    "tns-android": {
+      "version": "1.7.1"
+    },
+    "tns-ios": {
+      "version": "2.0.0"
+    }
+  },
+  "dependencies": {
+    "nativescript-kiip": "file:../plugin",
+    "tns-core-modules": "1.7.1"
+  }
 }

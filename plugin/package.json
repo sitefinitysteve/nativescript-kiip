@@ -1,6 +1,6 @@
 {
   "name": "nativescript-kiip",
-  "version": "v0.1.1",
+  "version": "v0.1.2",
   "description": "Integrate native kiip widgets into NativeScript",
   "main": "index.js",
   "nativescript": {
