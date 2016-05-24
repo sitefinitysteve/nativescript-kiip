@@ -5,11 +5,11 @@
 			"version": "1.7.1"
 		},
 		"tns-ios": {
-			"version": "1.7.0"
+			"version": "2.0.0"
 		}
 	},
 	"dependencies": {
-		"nativescript-kiip": "^0.1.0",
+		"nativescript-kiip": "file:../plugin",
 		"tns-core-modules": "1.7.1"
 	}
 }
