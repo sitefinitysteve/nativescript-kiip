@@ -1,6 +1,4 @@
 var app = require("application");
-var startEndCallback = null;
-var momentCallback = null;
 
 var settings = {
     testMode: false
@@ -15,8 +13,6 @@ exports.initalize = function (options) {
         var jBool = new java.lang.Boolean(options.testMode);
         me.kiip.sdk.Kiip.getInstance().setTestMode(jBool);
     }
-
-    setCallback();
 }
 
 exports.instance = function () {
@@ -56,7 +52,10 @@ exports.setBirthday = function (birthday) {
 exports.saveMoment = function (options) {
     return new Promise(function (resolve, reject) {
         if (options.id) {
+            console.log("Save moment");
+            debugger;
             var localCallback = new momentCallback();
+            console.log(localCallback);
             localCallback.init(resolve, reject)
 
             if (options.id && options.value) {
@@ -76,6 +75,7 @@ exports.saveMoment = function (options) {
 
 exports.startSession = function () {
     return new Promise(function (resolve, reject) {
+        console.log("startSession");
         var localCallback = new startEndCallback();
         localCallback.init(resolve, reject)
 
@@ -85,6 +85,7 @@ exports.startSession = function () {
 
 exports.endSession = function () {
     return new Promise(function (resolve, reject) {
+        console.log("endSession");
         var localCallback = new startEndCallback();
         localCallback.init(resolve, reject)
 
@@ -92,51 +93,51 @@ exports.endSession = function () {
     });
 }
 
-function setCallback() {
-    startEndCallback = me.kiip.sdk.Kiip.Callback.extend({
-        _promise: null,
+var startEndCallback = me.kiip.sdk.Kiip.Callback.extend({
+    _promise: null,
 
-        init: function (resolve, reject) {
-            this._promise = { resolve: resolve, reject: reject };
-        },
-        onFinished: function (kiip, poptart) {
-            this._promise.resolve({
-                kiip: kiip,
-                poptart: poptart
-            });
-        },
-        onFailed: function (kiip, exception) {
-            this._promise.reject({
-                kiip: kiip,
-                exception: exception
-            });
+    init: function (resolve, reject) {
+        this._promise = { resolve: resolve, reject: reject };
+    },
+    onFinished: function (kiip, poptart) {
+        this._promise.resolve({
+            kiip: kiip,
+            poptart: poptart
+        });
+    },
+    onFailed: function (kiip, exception) {
+        this._promise.reject({
+            kiip: kiip,
+            exception: exception
+        });
+    }
+});
+
+
+
+var momentCallback = me.kiip.sdk.Kiip.Callback.extend({
+    _promise: null,
+    _message: "",
+
+    init: function (resolve, reject, message) {
+        this._promise = { resolve: resolve, reject: reject };
+    },
+    onFinished: function (kiip, poptart) {
+        if (poptart == null) {
+            this._message = "Successful moment but no reward to give.";
+            console.log("Successful moment but no reward to give.");
         }
-    });
 
-    momentCallback = me.kiip.sdk.Kiip.Callback.extend({
-        _promise: null,
-        _message: "",
-
-        init: function (resolve, reject, message) {
-            this._promise = { resolve: resolve, reject: reject };
-        },
-        onFinished: function (kiip, poptart) {
-            if (poptart == null) {
-                this._message = "Successful moment but no reward to give.";
-                console.log("Successful moment but no reward to give.");
-            }
-
-            this._promise.resolve({
-                kiip: kiip,
-                poptart: poptart,
-                message: this._message
-            });
-        },
-        onFailed: function (kiip, exception) {
-            this._promise.reject({
-                kiip: kiip,
-                exception: exception
-            });
-        }
-    });
-}
+        this._promise.resolve({
+            kiip: kiip,
+            poptart: poptart,
+            message: this._message
+        });
+    },
+    onFailed: function (kiip, exception) {
+        this._promise.reject({
+            kiip: kiip,
+            exception: exception
+        });
+    }
+});

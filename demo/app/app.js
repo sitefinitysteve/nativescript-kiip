@@ -9,7 +9,7 @@ if (application.ios) {
         d.prototype = new __();
     };
     
-    var appDelegate = (function (_super) {
+    var appDelegate = (function (_super) { 
         __extends(appDelegate, _super);
         function appDelegate() {
             _super.apply(this, arguments);
