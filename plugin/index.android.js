@@ -13,6 +13,9 @@ exports.initalize = function (options) {
         var jBool = new java.lang.Boolean(options.testMode);
         me.kiip.sdk.Kiip.getInstance().setTestMode(jBool);
     }
+
+    console.dump(startEndCallback);
+    console.dump(momentCallback);
 }
 
 exports.instance = function () {
@@ -52,10 +55,7 @@ exports.setBirthday = function (birthday) {
 exports.saveMoment = function (options) {
     return new Promise(function (resolve, reject) {
         if (options.id) {
-            console.log("Save moment");
-            debugger;
             var localCallback = new momentCallback();
-            console.log(localCallback);
             localCallback.init(resolve, reject)
 
             if (options.id && options.value) {
@@ -75,7 +75,6 @@ exports.saveMoment = function (options) {
 
 exports.startSession = function () {
     return new Promise(function (resolve, reject) {
-        console.log("startSession");
         var localCallback = new startEndCallback();
         localCallback.init(resolve, reject)
 
@@ -85,7 +84,6 @@ exports.startSession = function () {
 
 exports.endSession = function () {
     return new Promise(function (resolve, reject) {
-        console.log("endSession");
         var localCallback = new startEndCallback();
         localCallback.init(resolve, reject)
 
